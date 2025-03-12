@@ -1,0 +1,140 @@
+[NEAT]
+Defines global settings for the NEAT algorithm.
+
+fitness_criterion = max
+The fitness function aims to maximize the score (higher is better).
+fitness_threshold = 5000
+The training stops when a genome reaches a fitness of 5000.
+pop_size = 50
+Specifies the number of individuals (neural networks) per generation.
+reset_on_extinction = false
+If all species go extinct, the system does not restart from scratch.
+no_fitness_termination = false
+Training stops when the fitness threshold is reached. If set to true, training runs for a fixed number of generations instead.
+[DefaultGenome]
+Defines how genomes (individual neural networks) are structured and mutated.
+
+num_inputs = 2
+The network has 2 input neurons (likely representing game state variables).
+num_outputs = 1
+The network has 1 output neuron (probably controlling movement, like jumping).
+num_hidden = 0
+No hidden layers initially; the network starts as a simple perceptron.
+Activation Function Settings
+activation_default = sigmoid
+The default activation function used for neurons is sigmoid.
+activation_mutate_rate = 0.1
+There is a 10% chance that a neuron will change its activation function.
+activation_options = sigmoid tanh relu
+Allowed activation functions:
+sigmoid: Squashes output between 0 and 1.
+tanh: Squashes output between -1 and 1.
+relu: Sets negative values to 0, allowing sparse activations.
+Aggregation Function Settings
+aggregation_default = sum
+Neuron inputs are aggregated by summing them.
+aggregation_mutate_rate = 0.1
+There is a 10% chance that a neuron will change how it aggregates inputs.
+aggregation_options = sum mean max min
+Possible aggregation methods:
+sum: Adds all inputs.
+mean: Averages all inputs.
+max: Takes the maximum input.
+min: Takes the minimum input.
+Bias Settings
+bias_init_mean = 0.0
+Initial mean for bias values is 0.
+bias_init_stdev = 1.0
+Standard deviation for initializing bias values.
+bias_init_type = gaussian
+Bias values are initialized using a Gaussian distribution.
+bias_mutate_rate = 0.75
+There is a 75% chance a bias value mutates.
+bias_replace_rate = 0.1
+10% chance a bias value is replaced instead of mutating.
+bias_mutate_power = 0.5
+Controls the amount a bias value can change.
+bias_max_value = 30.0, bias_min_value = -30.0
+Bias values are bounded between -30 and 30.
+Response Settings
+response_init_mean = 1.0
+Initial mean for neuron response values (scaling factors).
+response_init_stdev = 0.0
+No variation in initial response values.
+response_init_type = gaussian
+Response values are sampled from a Gaussian distribution.
+response_mutate_rate = 0.75
+75% chance that a response value mutates.
+response_mutate_power = 0.5
+Controls how much response values can change.
+response_replace_rate = 0.1
+10% chance a response value is completely replaced.
+response_max_value = 30.0, response_min_value = -30.0
+Response values are bounded between -30 and 30.
+Weight Settings
+weight_init_mean = 0.0
+Initial weight values have a mean of 0.
+weight_init_stdev = 1.0
+Standard deviation of 1 for initializing weights.
+weight_init_type = gaussian
+Weights are initialized using a Gaussian distribution.
+weight_mutate_rate = 0.8
+80% chance a connection weight mutates.
+weight_replace_rate = 0.2
+20% chance a weight is completely replaced.
+weight_mutate_power = 0.5
+Controls the magnitude of weight mutations.
+weight_max_value = 30.0, weight_min_value = -30.0
+Weight values are limited to between -30 and 30.
+Connection Settings
+enabled_default = true
+Connections are initially enabled.
+enabled_mutate_rate = 0.2
+20% chance a connection is enabled/disabled during mutation.
+enabled_rate_to_false_add = 0.0, enabled_rate_to_true_add = 0.0
+No additional forced toggling of connection states.
+feed_forward = true
+Recurrent connections are disabled, making it a feed-forward network.
+initial_connection = unconnected
+The network starts with no connections; they evolve over time.
+Structural Mutation Settings
+single_structural_mutation = false
+More than one structural change can occur per generation.
+structural_mutation_surer = default
+Uses default settings for structural mutations.
+conn_add_prob = 0.2
+20% chance of adding a new connection.
+conn_delete_prob = 0.05
+5% chance of deleting a connection.
+node_add_prob = 0.05
+5% chance of adding a new neuron.
+node_delete_prob = 0.02
+2% chance of removing a neuron.
+Speciation Settings
+compatibility_disjoint_coefficient = 2.0
+Measures how much two genomes differ due to disjoint genes.
+compatibility_weight_coefficient = 0.5
+Measures how much two genomes differ based on connection weight differences.
+[DefaultSpeciesSet]
+Controls how different genomes must be to be in separate species.
+
+compatibility_threshold = 3.0
+Two genomes are considered part of different species if their compatibility score is greater than 3.0.
+[DefaultStagnation]
+Determines how species are removed if they do not improve.
+
+species_fitness_func = max
+The fitness of a species is based on the best-performing member.
+max_stagnation = 15
+If a species does not improve for 15 generations, it is removed.
+species_elitism = 2
+2 species are always kept, even if they stagnate.
+[DefaultReproduction]
+Controls how genomes reproduce and evolve.
+
+elitism = 2
+Top 2 individuals from each generation are carried over unchanged.
+survival_threshold = 0.2
+Only the top 20% of genomes in a species survive to the next generation.
+min_species_size = 2
+A species must have at least 2 members to be maintained.

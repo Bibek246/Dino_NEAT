@@ -1,0 +1,186 @@
+# General NEAT configuration settings
+[NEAT]
+# Defines the method for evaluating fitness (higher is better)
+fitness_criterion     = max  
+
+# The training stops when this fitness value is reached
+fitness_threshold     = 5000  
+
+# The number of AI agents in each generation
+pop_size              = 50  
+
+# Determines whether a full reset occurs upon extinction
+reset_on_extinction   = false  
+
+# Training continues regardless of fitness improvement
+no_fitness_termination = false  
+
+# Genome configuration settings
+[DefaultGenome]
+# Number of input nodes (e.g., game state features)
+num_inputs            = 2  
+
+# Number of output nodes (e.g., jump action)
+num_outputs           = 1  
+
+# Number of hidden layers (0 means a simple perceptron-like network)
+num_hidden            = 0  
+
+# Default activation function for neurons
+activation_default    = sigmoid  
+
+# Probability of mutating the activation function
+activation_mutate_rate = 0.1  
+
+# List of available activation functions
+activation_options    = sigmoid tanh relu  
+
+# Default aggregation function for combining inputs
+aggregation_default   = sum  
+
+# Probability of mutating the aggregation function
+aggregation_mutate_rate = 0.1  
+
+# List of available aggregation functions
+aggregation_options   = sum mean max min  
+
+# Mean of initial bias values for neurons
+bias_init_mean        = 0.0  
+
+# Standard deviation for initializing bias values
+bias_init_stdev       = 1.0  
+
+# Type of distribution for initializing bias values
+bias_init_type        = gaussian  
+
+# Probability of mutating bias values
+bias_mutate_rate      = 0.75  
+
+# Probability of replacing bias values with new ones
+bias_replace_rate     = 0.1  
+
+# Strength of bias mutations
+bias_mutate_power     = 0.5  
+
+# Maximum possible bias value
+bias_max_value        = 30.0  
+
+# Minimum possible bias value
+bias_min_value        = -30.0  
+
+# Mean of initial response values for neurons
+response_init_mean    = 1.0  
+
+# Standard deviation for initializing response values
+response_init_stdev   = 0.0  
+
+# Type of distribution for initializing response values
+response_init_type    = gaussian  
+
+# Probability of mutating response values
+response_mutate_rate  = 0.75  
+
+# Strength of response mutations
+response_mutate_power = 0.5  
+
+# Probability of replacing response values with new ones
+response_replace_rate = 0.1  
+
+# Maximum response value
+response_max_value    = 30.0  
+
+# Minimum response value
+response_min_value    = -30.0  
+
+# Mean of initial connection weights
+weight_init_mean      = 0.0  
+
+# Standard deviation for initializing connection weights
+weight_init_stdev     = 1.0  
+
+# Type of distribution for initializing weight values
+weight_init_type      = gaussian  
+
+# Probability of mutating connection weights
+weight_mutate_rate    = 0.8  
+
+# Probability of replacing a connection weight
+weight_replace_rate   = 0.2  
+
+# Strength of weight mutations
+weight_mutate_power   = 0.5  
+
+# Maximum connection weight value
+weight_max_value      = 30.0  
+
+# Minimum connection weight value
+weight_min_value      = -30.0  
+
+# Whether connections are enabled by default
+enabled_default       = true  
+
+# Probability of enabling/disabling a connection during mutation
+enabled_mutate_rate   = 0.2  
+
+# Probability of turning an enabled connection off
+enabled_rate_to_false_add = 0.0  
+
+# Probability of turning a disabled connection on
+enabled_rate_to_true_add = 0.0  
+
+# Determines if the network is strictly feedforward (no loops)
+feed_forward          = true  
+
+# Initial connectivity type (unconnected means no initial connections)
+initial_connection    = unconnected  
+
+# Restricts structural mutations to a single change per generation
+single_structural_mutation = false  
+
+# Determines whether structural mutations should be more certain
+structural_mutation_surer = default  
+
+# Probability of adding a new connection
+conn_add_prob         = 0.2  
+
+# Probability of deleting an existing connection
+conn_delete_prob      = 0.05  
+
+# Probability of adding a new neuron
+node_add_prob         = 0.05  
+
+# Probability of deleting an existing neuron
+node_delete_prob      = 0.02  
+
+# Coefficient for measuring species compatibility based on disjoint genes
+compatibility_disjoint_coefficient = 2.0  
+
+# Coefficient for measuring species compatibility based on weight differences
+compatibility_weight_coefficient   = 0.5  
+
+# Species configuration settings
+[DefaultSpeciesSet]
+# Threshold for determining if two networks belong to different species
+compatibility_threshold = 3.0  
+
+# Stagnation settings (used for removing non-evolving species)
+[DefaultStagnation]
+# Determines species fitness method (max ensures only the best species survive)
+species_fitness_func = max  
+
+# Number of generations before a species is removed if it does not improve
+max_stagnation = 15  
+
+# Number of top-performing species kept even if stagnant
+species_elitism = 2  
+
+# Reproduction configuration settings
+[DefaultReproduction]
+# Number of top-performing networks carried to the next generation unchanged
+elitism = 2  
+
+# Fraction of species allowed to reproduce
+survival_threshold = 0.2  
+
+# Minimum number of networks in a species after reproduction
+min_species_size    = 2  
